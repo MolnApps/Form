@@ -5,7 +5,7 @@ namespace MolnApps\Form;
 use \MolnApps\Form\Field\Field;
 use \MolnApps\Form\Field\Factory;
 
-abstract class AbstractCustomFieldSet implements \Countable, FieldFactory, FieldSetInterface
+abstract class AbstractCustomFieldSet implements \Countable, FieldFactory, FieldSet, FieldSetBuilder
 {
 	protected $fieldFactory;
 	protected $fieldSet;
@@ -13,7 +13,7 @@ abstract class AbstractCustomFieldSet implements \Countable, FieldFactory, Field
 	public function __construct()
 	{
 		$this->fieldFactory = new Factory;
-		$this->fieldSet = new FieldSet($this);
+		$this->fieldSet = new BaseFieldSet($this);
 	}
 
 	public function __call($name, $args)
@@ -41,7 +41,7 @@ abstract class AbstractCustomFieldSet implements \Countable, FieldFactory, Field
 		return $field;
 	}
 
-	// ! FieldSetInterface
+	// ! FieldSetBuilder
 
 	public function prefix($prefix)
 	{
@@ -64,9 +64,16 @@ abstract class AbstractCustomFieldSet implements \Countable, FieldFactory, Field
 		return $this;
 	}
 
-	public function fieldAttr($name, array $attributes = [])
+	public function attributes(array $attributes, $name = null)
 	{
-		$this->fieldSet->fieldAttr($name, $attributes);
+		$this->fieldSet->attributes($attributes, $name);
+
+		return $this;
+	}
+
+	public function validation($key = null)
+	{
+		$this->fieldSet->valiadtion($key);
 
 		return $this;
 	}

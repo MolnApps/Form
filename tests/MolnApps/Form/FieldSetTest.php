@@ -10,7 +10,7 @@ class FieldSetTest extends TestCase
 	
 	protected function setUp()
 	{
-		$this->fieldSet = new FieldSet(new RowFieldSet);
+		$this->fieldSet = new BaseFieldSet(new RowFieldSet);
 	}
 
 	/** @test */
@@ -205,66 +205,6 @@ class FieldSetTest extends TestCase
 			<label for="product">Product</label><br/>
 			<select name="product" id="product" multiple>
 				<option value="moln_report_basic">Moln Report Basic</option>
-			</select><br/>
-		', $result);
-	}
-
-	/** @test */
-	public function it_registers_a_text_field_with_custom_attributes()
-	{
-		$this->fieldSet->field('firstName', 'text', 'First name');
-		$this->fieldSet->fieldAttr('firstName', ['class' => 'firstName', 'maxlength' => 10]);
-
-		$result = $this->fieldSet->build();
-
-		$this->assertMarkup('
-			<label for="firstName">First name</label><br/>
-			<input type="text" name="firstName" id="firstName" class="firstName" maxlength="10" /><br/>
-		', $result);
-	}
-
-	/** @test */
-	public function it_registers_a_textarea_field_with_custom_attributes()
-	{
-		$this->fieldSet->field('description', 'textarea', 'Description');
-		$this->fieldSet->fieldAttr('description', ['placeholder' => 'Lorem ipsum dolor']);
-
-		$result = $this->fieldSet->build();
-
-		$this->assertMarkup('
-			<label for="description">Description</label><br/>
-			<textarea name="description" id="description" rows="9" cols="60" placeholder="Lorem ipsum dolor"></textarea><br/>
-		', $result);
-	}
-
-	/** @test */
-	public function it_registers_a_select_field_with_custom_attributes()
-	{
-		$this->fieldSet->field('choose', 'select', 'Choose', ['foo' => 'bar']);
-		$this->fieldSet->fieldAttr('choose', ['class' => 'MolnSelect']);
-
-		$result = $this->fieldSet->build();
-
-		$this->assertMarkup('
-			<label for="choose">Choose</label><br/>
-			<select name="choose" id="choose" class="MolnSelect">
-				<option value="foo">bar</option>
-			</select><br/>
-		', $result);
-	}
-
-	/** @test */
-	public function it_registers_a_multiple_select_field_with_custom_attributes()
-	{
-		$this->fieldSet->field('choose', 'multipleSelect', 'Choose', ['foo' => 'bar']);
-		$this->fieldSet->fieldAttr('choose', ['class' => 'MolnSelect']);
-
-		$result = $this->fieldSet->build();
-
-		$this->assertMarkup('
-			<label for="choose">Choose</label><br/>
-			<select name="choose" id="choose" class="MolnSelect" multiple>
-				<option value="foo">bar</option>
 			</select><br/>
 		', $result);
 	}
