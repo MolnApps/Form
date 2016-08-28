@@ -73,7 +73,7 @@ abstract class AbstractCustomFieldSet implements \Countable, FieldFactory, Field
 
 	public function validation($key = null)
 	{
-		$this->fieldSet->valiadtion($key);
+		$this->fieldSet->validation($key);
 
 		return $this;
 	}
