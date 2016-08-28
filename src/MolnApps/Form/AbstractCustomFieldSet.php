@@ -10,10 +10,10 @@ abstract class AbstractCustomFieldSet implements \Countable, FieldFactory, Field
 	protected $fieldFactory;
 	protected $fieldSet;
 
-	public function __construct()
+	public function __construct(ValidationLog $validationLog = null)
 	{
 		$this->fieldFactory = new Factory;
-		$this->fieldSet = new BaseFieldSet($this);
+		$this->fieldSet = new BaseFieldSet($this, $validationLog);
 	}
 
 	public function __call($name, $args)
