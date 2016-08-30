@@ -32,6 +32,11 @@ abstract class AbstractCustomField implements Field
 		return str_replace(array_keys($dictionary), array_values($dictionary), $markup);
 	}
 
+	public function identifier()
+	{
+		return $this->field->identifier();
+	}
+
 	private function getDictionary($value)
 	{
 		return [

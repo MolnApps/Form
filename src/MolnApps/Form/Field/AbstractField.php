@@ -32,4 +32,9 @@ abstract class AbstractField implements Field
 
 		return Attributes::make($attributes)->get();
 	}
+
+	public function identifier()
+	{
+		return $this->name;
+	}
 }

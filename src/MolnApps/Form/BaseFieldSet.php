@@ -67,10 +67,17 @@ class BaseFieldSet implements \Countable, FieldSet, FieldSetBuilder
 	{
 		$name = $this->prefix . $name . $this->suffix;
 
+		return $this->addField($this->fieldFactory->createField($name, $type, $label, $values));
+	}
+
+	public function addField(Field $field)
+	{
+		$name = $field->identifier();
+
 		$this->currentName = $name;
 
-		$this->fields[$name] = $this->fieldFactory->createField($name, $type, $label, $values);
-		
+		$this->fields[$name] = $field;
+
 		return $this;
 	}
 
@@ -106,8 +113,8 @@ class BaseFieldSet implements \Countable, FieldSet, FieldSetBuilder
 
 	private function getFieldInput(Field $field, array $values)
 	{
-		$value = isset($values[$field->name]) 
-			? $values[$field->name] 
+		$value = isset($values[$field->identifier()]) 
+			? $values[$field->identifier()] 
 			: null;
 
 		return $field->build($value);
@@ -115,9 +122,9 @@ class BaseFieldSet implements \Countable, FieldSet, FieldSetBuilder
 
 	private function getFieldValidation(Field $field)
 	{
-		$validationKey = isset($this->validationKey[$field->name]) 
-			? $this->validationKey[$field->name] 
-			: $field->name;
+		$validationKey = isset($this->validationKey[$field->identifier()]) 
+			? $this->validationKey[$field->identifier()] 
+			: $field->identifier();
 
 		return $this->validationLog->getMessages($validationKey);
 	}

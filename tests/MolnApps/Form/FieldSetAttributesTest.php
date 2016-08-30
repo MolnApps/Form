@@ -85,4 +85,33 @@ class FieldSetAttributesTest extends TestCase
 			</select><br/>
 		', $result);
 	}
+
+	/** @test */
+	public function it_registers_a_field_and_adds_custom_attributes_with_fluent_api()
+	{
+		$fieldMock = $this->createFieldMock();
+		$fieldMock->expects($this->once())->method('setAttributes')->with(['class' => 'MolnSelect']);
+
+		$this->fieldSet->addField($fieldMock)->attributes(['class' => 'MolnSelect']);
+
+		$result = $this->fieldSet->build();
+	}
+
+	/** @test */
+	public function it_registers_a_field_and_adds_custom_attributes_with_identifier()
+	{
+		$fieldMock = $this->createFieldMock();
+		$fieldMock->expects($this->once())->method('setAttributes')->with(['class' => 'MolnSelect']);
+
+		// Add a field
+		$this->fieldSet->addField($fieldMock);
+		
+		// Add another field
+		$this->fieldSet->field('foo', 'text', 'Foo');
+
+		// Set attributes on the first field
+		$this->fieldSet->attributes(['class' => 'MolnSelect'], 'myMock');
+
+		$result = $this->fieldSet->build();
+	}
 }

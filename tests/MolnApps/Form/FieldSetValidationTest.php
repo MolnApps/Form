@@ -16,6 +16,8 @@ class FieldSetValidationTest extends TestCase
 		$map = [
 			['name', '<p class="validate error name">Please provide a first name</p>'],
 			['lastName', '<p class="validate error lastName">Please provide a last name</p>'],
+			['myMock', '<p class="validate error myMock">Please provide this field</p>'],
+			['my_mock', '<p class="validate error my_mock">Please provide this field</p>'],
 		];
 		
 		$this->validationLog
@@ -40,6 +42,21 @@ class FieldSetValidationTest extends TestCase
 	}
 
 	/** @test */
+	public function it_will_display_validation_message_for_a_field()
+	{
+		$fieldMock = $this->createFieldMock();
+
+		$this->fieldSet->addField($fieldMock);
+
+		$result = $this->fieldSet->build();
+
+		$this->assertMarkup('
+			<div>My mock</div>
+			<p class="validate error myMock">Please provide this field</p>
+		', $result);
+	}
+
+	/** @test */
 	public function it_provides_a_method_to_define_a_different_validation_key()
 	{
 		$this->fieldSet->text('firstName', 'First name')->validation('name');
@@ -50,6 +67,21 @@ class FieldSetValidationTest extends TestCase
 			<label for="firstName">First name</label><br/>
 			<input type="text" name="firstName" id="firstName" /><br/>
 			<p class="validate error name">Please provide a first name</p>
+		', $result);
+	}
+
+	/** @test */
+	public function it_provides_a_method_to_define_a_different_validation_key_for_a_field()
+	{
+		$fieldMock = $this->createFieldMock();
+
+		$this->fieldSet->addField($fieldMock)->validation('my_mock');
+
+		$result = $this->fieldSet->build();
+
+		$this->assertMarkup('
+			<div>My mock</div>
+			<p class="validate error my_mock">Please provide this field</p>
 		', $result);
 	}
 

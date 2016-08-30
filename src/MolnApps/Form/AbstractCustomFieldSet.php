@@ -57,6 +57,13 @@ abstract class AbstractCustomFieldSet implements \Countable, FieldFactory, Field
 		return $this;
 	}
 
+	public function addField(Field $field)
+	{
+		$this->fieldSet->addField($field);
+
+		return $this;
+	}
+
 	public function field($name, $type, $label, array $values = [])
 	{
 		$this->fieldSet->field($name, $type, $label, $values);

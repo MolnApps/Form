@@ -3,6 +3,7 @@
 namespace MolnApps\Form;
 
 use \MolnApps\Form\Custom\RowFieldSet;
+use \MolnApps\Form\Field\Field;
 
 class FieldSetTest extends TestCase
 {
@@ -154,6 +155,18 @@ class FieldSetTest extends TestCase
 	}
 
 	/** @test */
+	public function it_returns_the_markup_for_registered_field()
+	{
+		$fieldMock = $this->createFieldMock();
+
+		$this->fieldSet->addField($fieldMock);
+
+		$result = $this->fieldSet->build();
+
+		$this->assertMarkup('<div>My mock</div>', $result);
+	}
+
+	/** @test */
 	public function it_registers_a_text_field_with_qualified_method()
 	{
 		$this->fieldSet->text('firstName', 'First name');
@@ -216,6 +229,8 @@ class FieldSetTest extends TestCase
 
 		$this->fieldSet->field('supplier', 'textarea', 'Supplier');
 
+		$this->fieldSet->addField($this->createFieldMock());
+
 		$this->fieldSet->field('product', 'select', 'Product', [
 			'moln_report_basic' => 'Moln Report Basic',
 			'moln_report_plus' => 'Moln Report Plus',
@@ -240,6 +255,7 @@ class FieldSetTest extends TestCase
 			<input type="text" name="clientCode" id="clientCode" value="foobar" /><br/>
 			<label for="supplier">Supplier</label><br/>
 			<textarea name="supplier" id="supplier" rows="9" cols="60">Lorem ipsum dolor sit amet</textarea><br/>
+			<div>My mock</div>
 			<label for="product">Product</label><br/>
 			<select name="product" id="product">
 				<option value="moln_report_basic">Moln Report Basic</option>
