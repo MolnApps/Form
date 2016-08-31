@@ -1,23 +1,22 @@
 <?php
 
-namespace MolnApps\Form\Field;
+namespace MolnApps\Form\Input;
 
 use \MolnApps\Form\Attributes;
+use \MolnApps\Form\Contracts\Input;
 
-abstract class AbstractField implements Field
+abstract class AbstractInput implements Input
 {
-	public $name;
-	public $type;
-	public $label;
+	protected $name;
+	protected $type;
 	protected $values = [];
 
 	private $attributes = [];
 
-	public function __construct($name, $type, $label, array $values = [])
+	public function __construct($name, $type, array $values = [])
 	{
 		$this->name = $name;
 		$this->type = $type;
-		$this->label = $label;	
 		$this->values = $values;
 	}
 
@@ -36,5 +35,10 @@ abstract class AbstractField implements Field
 	public function identifier()
 	{
 		return $this->name;
+	}
+
+	public function type()
+	{
+		return $this->type;
 	}
 }

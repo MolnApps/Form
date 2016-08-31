@@ -2,18 +2,15 @@
 
 namespace MolnApps\Form\Custom;
 
-use \MolnApps\Form\AbstractCustomFieldSet;
-use \MolnApps\Form\Field\Field;
+use \MolnApps\Form\BaseFieldSet;
 
-class RowFieldSet extends AbstractCustomFieldSet
+use \MolnApps\Form\Input\Input;
+use \MolnApps\Form\Input\Label;
+
+class RowFieldSet extends BaseFieldSet
 {
-	protected function createCustomField(Field $field)
-	{
-		return new RowField($field);
-	}
-
 	public function build(array $values = [])
 	{
-		return '<div class="row">'.$this->fieldSet->build($values).'</div>';
+		return '<div class="row">'.parent::build($values).'</div>';
 	}
 }

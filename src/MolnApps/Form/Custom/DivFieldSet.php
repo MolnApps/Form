@@ -2,18 +2,20 @@
 
 namespace MolnApps\Form\Custom;
 
-use \MolnApps\Form\AbstractCustomFieldSet;
-use \MolnApps\Form\Field\Field;
+use \MolnApps\Form\BaseFieldSet;
 
-class DivFieldSet extends AbstractCustomFieldSet
+use \MolnApps\Form\Contracts\Input;
+use \MolnApps\Form\Contracts\Label;
+
+class DivFieldSet extends BaseFieldSet
 {
-	protected function createCustomField(Field $field)
+	protected function createField(Input $input, Label $label)
 	{
-		return new DivField($field);
+		return new DivField($input, $label);
 	}
 
 	public function build(array $values = [])
 	{
-		return '<div class="fieldset">'.$this->fieldSet->build($values).'</div>';
+		return '<div class="fieldset">'.parent::build($values).'</div>';
 	}
 }

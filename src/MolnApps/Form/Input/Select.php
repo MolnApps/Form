@@ -1,8 +1,8 @@
 <?php
 
-namespace MolnApps\Form\Field;
+namespace MolnApps\Form\Input;
 
-class Select extends AbstractField
+class Select extends AbstractInput
 {
 	public function build($value = null)
 	{

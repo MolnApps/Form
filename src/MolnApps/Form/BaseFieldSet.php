@@ -2,7 +2,13 @@
 
 namespace MolnApps\Form;
 
-use \MolnApps\Form\Field\Field;
+use \MolnApps\Form\Contracts\FieldSet;
+use \MolnApps\Form\Contracts\FieldSetBuilder;
+use \MolnApps\Form\Contracts\InputFactory;
+use \MolnApps\Form\Contracts\ValidationLog;
+use \MolnApps\Form\Contracts\Input;
+use \MolnApps\Form\Contracts\Label;
+use \MolnApps\Form\Contracts\Field;
 
 class BaseFieldSet implements \Countable, FieldSet, FieldSetBuilder
 {
@@ -14,13 +20,13 @@ class BaseFieldSet implements \Countable, FieldSet, FieldSetBuilder
 	private $fields = [];
 	private $validationKey = [];
 	
-	private $fieldFactory;
+	private $inputFactory;
 	
 	private $validationLog;
 
-	public function __construct(FieldFactory $fieldFactory, ValidationLog $validationLog = null)
+	public function __construct(InputFactory $inputFactory, ValidationLog $validationLog = null)
 	{
-		$this->fieldFactory = $fieldFactory;
+		$this->inputFactory = $inputFactory;
 		$this->validationLog = $validationLog ?: new NullValidationLog;
 	}
 
@@ -67,7 +73,20 @@ class BaseFieldSet implements \Countable, FieldSet, FieldSetBuilder
 	{
 		$name = $this->prefix . $name . $this->suffix;
 
-		return $this->addField($this->fieldFactory->createField($name, $type, $label, $values));
+		return $this->addField($this->getField($name, $type, $label, $values));
+	}
+
+	protected function getField($name, $type, $label, $values = [])
+	{
+		$input = $this->inputFactory->createInput($name, $type, $values);
+		$label = $this->inputFactory->createLabel($name, $label);
+		
+		return $this->createField($input, $label);
+	}
+
+	protected function createField(Input $input, Label $label)
+	{
+		return new BaseField($input, $label);
 	}
 
 	public function addField(Field $field)

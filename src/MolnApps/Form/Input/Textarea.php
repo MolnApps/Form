@@ -1,26 +1,24 @@
 <?php
 
-namespace MolnApps\Form\Field;
+namespace MolnApps\Form\Input;
 
-class Text extends AbstractField
+class Textarea extends AbstractInput
 {
 	public function build($value = null)
 	{
 		$baseAttr = [
-			'type' => 'text',
 			'name' => $this->name,
 			'id' => $this->name,
+			'rows' => 9,
+			'cols' => 60,
 		];
 
-		if ($value) {
-			$baseAttr['value'] = $value;
-		}
-
 		$attributes = $this->getAttributes($baseAttr);
-		
+
 		return sprintf(
-			'<input %s />', 
-			$attributes
+			'<textarea %s>%s</textarea>', 
+			$attributes,
+			$value
 		);
 	}
 }

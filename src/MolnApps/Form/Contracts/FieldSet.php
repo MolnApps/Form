@@ -1,6 +1,6 @@
 <?php
 
-namespace MolnApps\Form;
+namespace MolnApps\Form\Contracts;
 
 interface FieldSet
 {

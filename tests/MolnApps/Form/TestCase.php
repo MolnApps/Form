@@ -2,7 +2,7 @@
 
 namespace MolnApps\Form;
 
-use \MolnApps\Form\Field\Field;
+use \MolnApps\Form\Contracts\Field;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {

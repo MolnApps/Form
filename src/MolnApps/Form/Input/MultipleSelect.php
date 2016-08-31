@@ -1,6 +1,6 @@
 <?php
 
-namespace MolnApps\Form\Field;
+namespace MolnApps\Form\Input;
 
 class MultipleSelect extends Select
 {

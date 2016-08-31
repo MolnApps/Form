@@ -2,7 +2,8 @@
 
 namespace MolnApps\Form;
 
-use \MolnApps\Form\Custom\RowFieldSet;
+use \MolnApps\Form\Input\Factory as InputFactory;
+use \MolnApps\Form\Contracts\ValidationLog;
 
 class FieldSetValidationTest extends TestCase
 {
@@ -24,7 +25,7 @@ class FieldSetValidationTest extends TestCase
 			->method('getMessages')
 			->will($this->returnValueMap($map));
 
-		$this->fieldSet = new BaseFieldSet(new RowFieldSet, $this->validationLog);
+		$this->fieldSet = new BaseFieldSet(new InputFactory, $this->validationLog);
 	}
 
 	/** @test */

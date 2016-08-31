@@ -2,10 +2,9 @@
 
 namespace MolnApps\Form\Custom;
 
-use \MolnApps\Form\AbstractCustomField;
-use \MolnApps\Form\Field\Field;
+use \MolnApps\Form\BaseField;
 
-class DivField extends AbstractCustomField
+class DivField extends BaseField
 {
 	protected function getMarkup()
 	{
@@ -31,7 +30,9 @@ class DivField extends AbstractCustomField
 			'default' => ['field'],
 		];
 
-		$classes = isset($map[$this->type]) ? $map[$this->type] : $map['default'];
+		$type = $this->type();
+
+		$classes = isset($map[$type]) ? $map[$type] : $map['default'];
 		
 		return implode(' ', $classes);
 	}

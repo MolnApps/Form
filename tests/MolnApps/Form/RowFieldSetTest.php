@@ -3,13 +3,14 @@
 namespace MolnApps\Form;
 
 use \MolnApps\Form\Custom\RowFieldSet;
+use \MolnApps\Form\Input\Factory as InputFactory;
 
 class RowFieldSetTest extends TestCase
 {
 	/** @test */
 	public function it_returns_the_markup_for_multiple_registered_fields_with_filled_values()
 	{
-		$fieldSet = new RowFieldSet;
+		$fieldSet = new RowFieldSet(new InputFactory);
 
 		$fieldSet->field('clientCode', 'text', 'Client code');
 

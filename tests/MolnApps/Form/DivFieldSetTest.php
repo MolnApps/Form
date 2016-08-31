@@ -4,12 +4,14 @@ namespace MolnApps\Form;
 
 use \MolnApps\Form\Custom\DivFieldSet;
 
+use \MolnApps\Form\Input\Factory as InputFactory;
+
 class DivFieldSetTest extends TestCase
 {
 	/** @test */
 	public function it_returns_the_markup_for_multiple_registered_fields_with_filled_values()
 	{
-		$fieldSet = new DivFieldSet;
+		$fieldSet = new DivFieldSet(new InputFactory);
 
 		$fieldSet->field('clientCode', 'text', 'Client code');
 

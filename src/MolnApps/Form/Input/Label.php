@@ -1,8 +1,10 @@
 <?php
 
-namespace MolnApps\Form;
+namespace MolnApps\Form\Input;
 
-class Label
+use \MolnApps\Form\Contracts\Label as LabelInterface;
+
+class Label implements LabelInterface
 {
 	private $name;
 	private $label;
@@ -11,11 +13,6 @@ class Label
 	{
 		$this->name = $name;
 		$this->label = $label;
-	}
-
-	public static function make($name, $label)
-	{
-		return new static($name, $label);
 	}
 
 	public function build()

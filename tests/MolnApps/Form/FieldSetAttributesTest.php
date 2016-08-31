@@ -2,7 +2,7 @@
 
 namespace MolnApps\Form;
 
-use \MolnApps\Form\Custom\RowFieldSet;
+use \MolnApps\Form\Input\Factory as InputFactory;
 
 class FieldSetAttributesTest extends TestCase
 {
@@ -10,7 +10,7 @@ class FieldSetAttributesTest extends TestCase
 	
 	protected function setUp()
 	{
-		$this->fieldSet = new BaseFieldSet(new RowFieldSet);
+		$this->fieldSet = new BaseFieldSet(new InputFactory);
 	}
 
 	/** @test */
