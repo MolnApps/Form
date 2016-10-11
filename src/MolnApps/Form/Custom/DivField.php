@@ -8,12 +8,7 @@ class DivField extends BaseField
 {
 	protected function getMarkup()
 	{
-		return '
-			<div class="{classes}">
-				{label}<br/>
-				{input}<br/>
-			</div>
-		';
+		return '<div class="{classes}">' . parent::getMarkup() . '</div>';
 	}
 
 	protected function getCustomDictionary()

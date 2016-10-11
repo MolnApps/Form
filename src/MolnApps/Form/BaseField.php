@@ -15,6 +15,10 @@ class BaseField implements Field
 	{
 		$this->input = $input;
 		$this->label = $label;
+
+		if ($this->shouldInlineLabel()) {
+			$this->label->top($this->input);
+		}
 	}
 
 	public function setAttributes(array $attributes)
@@ -50,7 +54,7 @@ class BaseField implements Field
 	private function getBaseDictionary($value)
 	{
 		return [
-			'{label}' => $this->label->build(),
+			'{label}' => $this->label->build($value),
 			'{input}' => $this->input->build($value),
 		];
 	}
@@ -62,6 +66,15 @@ class BaseField implements Field
 
 	protected function getMarkup()
 	{
+		if ($this->shouldInlineLabel()) {
+			return '{label}<br/>';
+		}
+
 		return '{label}<br/>{input}<br/>';
+	}
+
+	private function shouldInlineLabel()
+	{
+		return $this->type() == 'checkbox';
 	}
 }
