@@ -6,7 +6,7 @@ use \MolnApps\Form\Contracts\InputFactory;
 
 class Factory implements InputFactory
 {
-	public function createInput($name, $type, array $values = [])
+	public function createInput($name, $type, $values = null)
 	{
 		$className = '\MolnApps\Form\Input\\' . ucfirst($type);
 

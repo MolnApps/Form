@@ -154,6 +154,19 @@ class FieldSetTest extends TestCase
 	}
 
 	/** @test */
+	public function it_returns_the_markup_for_registered_checkbox()
+	{
+		$this->fieldSet->field('agree', 'checkbox', 'Agree to Terms of Service');
+
+		$result = $this->fieldSet->build();
+
+		$this->assertMarkup('
+			<label for="agree">Agree to Terms of Service</label><br/>
+			<input type="checkbox" name="agree" id="agree" value="1" /><br/>
+		', $result);
+	}
+
+	/** @test */
 	public function it_returns_the_markup_for_registered_field()
 	{
 		$fieldMock = $this->createFieldMock();
@@ -222,6 +235,19 @@ class FieldSetTest extends TestCase
 	}
 
 	/** @test */
+	public function it_registers_a_checkbox_with_qualified_method()
+	{
+		$this->fieldSet->checkbox('agree', 'Agree to Terms of Service', 'agree');
+
+		$result = $this->fieldSet->build();
+
+		$this->assertMarkup('
+			<label for="agree">Agree to Terms of Service</label><br/>
+			<input type="checkbox" name="agree" id="agree" value="agree" /><br/>
+		', $result);
+	}
+
+	/** @test */
 	public function it_returns_the_markup_for_multiple_registered_fields_with_filled_values()
 	{
 		$this->fieldSet->field('clientCode', 'text', 'Client code');
@@ -242,11 +268,14 @@ class FieldSetTest extends TestCase
 			'moln_report_plus_yearly' => 'Moln Report Plus Yearly',
 		]);
 
+		$this->fieldSet->field('agree', 'checkbox', 'Agree to Terms of Service', 'agree');
+
 		$result = $this->fieldSet->build([
 			'clientCode' => 'foobar',
 			'supplier' => 'Lorem ipsum dolor sit amet',
 			'product' => 'moln_report_plus',
 			'products' => ['moln_report_basic_monthly', 'moln_report_plus_yearly'],
+			'agree' => 'agree',
 		]);
 
 		$this->assertMarkup('
@@ -267,6 +296,8 @@ class FieldSetTest extends TestCase
 				<option value="moln_report_basic_yearly">Moln Report Basic Yearly</option>
 				<option value="moln_report_plus_yearly" selected="selected">Moln Report Plus Yearly</option>
 			</select><br/>
+			<label for="agree">Agree to Terms of Service</label><br/>
+			<input type="checkbox" name="agree" id="agree" value="agree" checked="checked" /><br/>
 		', $result);
 	}
 }

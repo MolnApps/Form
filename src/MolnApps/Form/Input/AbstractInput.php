@@ -13,8 +13,10 @@ abstract class AbstractInput implements Input
 
 	private $attributes = [];
 
-	public function __construct($name, $type, array $values = [])
+	public function __construct($name, $type, $values = null)
 	{
+		$values = (array)$values;
+
 		$this->name = $name;
 		$this->type = $type;
 		$this->values = $values;

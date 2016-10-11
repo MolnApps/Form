@@ -65,6 +65,18 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/** @test */
+	public function it_returns_a_checkbox()
+	{
+		$factory = new Factory;
+
+		$input = $factory->createInput('agree', 'checkbox', 'agree');
+
+		$this->assertInstanceOf(Checkbox::class, $input);
+		$this->assertEquals('agree', $input->identifier());
+		$this->assertEquals('checkbox', $input->type());
+	}
+
+	/** @test */
 	public function it_returns_a_label()
 	{
 		$factory = new Factory;

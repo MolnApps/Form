@@ -9,7 +9,7 @@ interface FieldSetBuilder
 	
 	public function addField(Field $field);
 	
-	public function field($name, $type, $label, array $values = []);
+	public function field($name, $type, $label, $values = null);
 	public function attributes(array $attributes, $name = null);
 	public function validation($key = null);
 }

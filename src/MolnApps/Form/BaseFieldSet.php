@@ -69,14 +69,19 @@ class BaseFieldSet implements \Countable, FieldSet, FieldSetBuilder
 		return $this->field($name, 'multipleSelect', $label, $values);
 	}
 
-	public function field($name, $type, $label, array $values = [])
+	public function checkbox($name, $label, $value)
+	{
+		return $this->field($name, 'checkbox', $label, (array)$value);
+	}
+
+	public function field($name, $type, $label, $values = null)
 	{
 		$name = $this->prefix . $name . $this->suffix;
 
 		return $this->addField($this->getField($name, $type, $label, $values));
 	}
 
-	protected function getField($name, $type, $label, $values = [])
+	protected function getField($name, $type, $label, $values = null)
 	{
 		$input = $this->inputFactory->createInput($name, $type, $values);
 		$label = $this->inputFactory->createLabel($name, $label);
