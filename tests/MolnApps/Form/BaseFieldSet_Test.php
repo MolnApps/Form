@@ -161,8 +161,10 @@ class FieldSetTest extends TestCase
 		$result = $this->fieldSet->build();
 
 		$this->assertMarkup('
-			<label for="agree">Agree to Terms of Service</label><br/>
-			<input type="checkbox" name="agree" id="agree" value="1" /><br/>
+			<label for="agree">
+				<input type="checkbox" name="agree" id="agree" value="1" /> 
+				Agree to Terms of Service
+			</label><br/>
 		', $result);
 	}
 
@@ -242,8 +244,10 @@ class FieldSetTest extends TestCase
 		$result = $this->fieldSet->build();
 
 		$this->assertMarkup('
-			<label for="agree">Agree to Terms of Service</label><br/>
-			<input type="checkbox" name="agree" id="agree" value="agree" /><br/>
+			<label for="agree">
+				<input type="checkbox" name="agree" id="agree" value="agree" /> 
+				Agree to Terms of Service
+			</label><br/>
 		', $result);
 	}
 
@@ -296,8 +300,10 @@ class FieldSetTest extends TestCase
 				<option value="moln_report_basic_yearly">Moln Report Basic Yearly</option>
 				<option value="moln_report_plus_yearly" selected="selected">Moln Report Plus Yearly</option>
 			</select><br/>
-			<label for="agree">Agree to Terms of Service</label><br/>
-			<input type="checkbox" name="agree" id="agree" value="agree" checked="checked" /><br/>
+			<label for="agree">
+				<input type="checkbox" name="agree" id="agree" value="agree" checked="checked" /> 
+				Agree to Terms of Service
+			</label><br/>
 		', $result);
 	}
 }

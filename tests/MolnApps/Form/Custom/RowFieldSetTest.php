@@ -1,8 +1,8 @@
 <?php
 
-namespace MolnApps\Form;
+namespace MolnApps\Form\Custom;
 
-use \MolnApps\Form\Custom\RowFieldSet;
+use \MolnApps\Form\TestCase;
 use \MolnApps\Form\Input\Factory as InputFactory;
 
 class RowFieldSetTest extends TestCase
@@ -27,6 +27,8 @@ class RowFieldSetTest extends TestCase
 			'moln_report_basic_yearly' => 'Moln Report Basic Yearly',
 			'moln_report_plus_yearly' => 'Moln Report Plus Yearly',
 		]);
+
+		$fieldSet->field('agree', 'checkbox', 'Agreenment');
 
 		$result = $fieldSet->build([
 			'clientCode' => 'foobar',
@@ -53,6 +55,10 @@ class RowFieldSetTest extends TestCase
 					<option value="moln_report_basic_yearly">Moln Report Basic Yearly</option>
 					<option value="moln_report_plus_yearly" selected="selected">Moln Report Plus Yearly</option>
 				</select><br/>
+				<label for="agree">
+					<input type="checkbox" name="agree" id="agree" value="1" /> 
+					Agreenment
+				</label><br/>
 			</div>
 		', $result);
 	}
