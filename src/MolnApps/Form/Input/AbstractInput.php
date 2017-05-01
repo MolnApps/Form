@@ -13,11 +13,6 @@ abstract class AbstractInput implements Input
 	protected $type;
 	protected $values = [];
 
-	public function getAttr()
-	{
-		return $this->attributes;
-	}
-
 	public function __construct($name, $type, $values = null)
 	{
 		$values = (array)$values;
