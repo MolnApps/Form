@@ -15,7 +15,7 @@ class DivField extends BaseField
 	{
 		$override = [
 			'text' => 'input',
-			'multipleSelect' => 'select',
+			'multipleSelect' => 'select Form__select--multiple',
 		];
 
 		$type = $input->type();

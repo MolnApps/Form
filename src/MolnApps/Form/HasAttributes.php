@@ -15,9 +15,20 @@ trait HasAttributes
 
 	public function addAttributes(array $attributes)
 	{
+		$this->mergeClassAttributes($attributes);
+
 		$this->attributes = array_merge($this->attributes, $attributes);
 
 		return $this;
+	}
+
+	private function mergeClassAttributes(array &$attributes)
+	{
+		if (isset($attributes['class'])) {
+			$this->attributes['class'].= ' ' . $attributes['class'];
+			$this->attributes['class'] = trim($this->attributes['class']);
+			unset($attributes['class']);
+		}
 	}
 
 	protected function getAttributes(array $baseAttributes = [])

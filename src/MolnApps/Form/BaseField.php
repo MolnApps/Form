@@ -26,12 +26,12 @@ class BaseField implements Field
 
 	public function setAttributes(array $attributes)
 	{
-		return $this->input->setAttributes($attributes);
+		return $this->input->addAttributes($attributes);
 	}
 
 	public function setLabelAttributes(array $attributes)
 	{
-		return $this->label->setAttributes($attributes);
+		return $this->label->addAttributes($attributes);
 	}
 
 	public function build($value = null)
