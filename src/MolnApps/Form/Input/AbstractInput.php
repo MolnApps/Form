@@ -2,11 +2,13 @@
 
 namespace MolnApps\Form\Input;
 
-use \MolnApps\Form\Attributes;
+use \MolnApps\Form\HasAttributes;
 use \MolnApps\Form\Contracts\Input;
 
 abstract class AbstractInput implements Input
 {
+	use HasAttributes;
+
 	protected $name;
 	protected $type;
 	protected $values = [];
@@ -20,18 +22,6 @@ abstract class AbstractInput implements Input
 		$this->name = $name;
 		$this->type = $type;
 		$this->values = $values;
-	}
-
-	public function setAttributes(array $attributes)
-	{
-		$this->attributes = $attributes;
-	}
-
-	protected function getAttributes(array $baseAttributes = [])
-	{
-		$attributes = array_merge($baseAttributes, $this->attributes);
-
-		return Attributes::make($attributes)->get();
 	}
 
 	public function identifier()

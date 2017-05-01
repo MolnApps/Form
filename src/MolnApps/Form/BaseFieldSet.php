@@ -123,6 +123,15 @@ class BaseFieldSet implements \Countable, FieldSet, FieldSetBuilder
 		return $this;
 	}
 
+	public function labelAttributes(array $attributes, $name = null)
+	{
+		$name = $name ?: $this->currentName;
+
+		$this->fields[$name]->setLabelAttributes($attributes);
+
+		return $this;
+	}
+
 	public function build(array $values = [])
 	{
 		$html = [];

@@ -11,5 +11,6 @@ interface FieldSetBuilder
 	
 	public function field($name, $type, $label, $values = null);
 	public function attributes(array $attributes, $name = null);
+	public function labelAttributes(array $attribtues, $name = null);
 	public function validation($key = null);
 }

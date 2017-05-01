@@ -18,9 +18,6 @@ class Text extends AbstractInput
 
 		$attributes = $this->getAttributes($baseAttr);
 		
-		return sprintf(
-			'<input %s />', 
-			$attributes
-		);
+		return sprintf('<input %s />', $attributes);
 	}
 }

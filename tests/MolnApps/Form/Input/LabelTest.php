@@ -66,4 +66,19 @@ class LabelTest extends TestCase
 			$html
 		);
 	}
+
+	/** @test */
+	public function it_accepts_additional_attributes()
+	{
+		$label = new Label('foo', 'Foo');
+
+		$label->setAttributes(['class' => 'Foo_bar']);
+
+		$html = $label->build();
+
+		$this->assertMarkup(
+			'<label for="foo" class="Foo_bar">Foo</label>', 
+			$html
+		);
+	}
 }

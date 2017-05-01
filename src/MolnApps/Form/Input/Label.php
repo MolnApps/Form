@@ -5,11 +5,15 @@ namespace MolnApps\Form\Input;
 use \MolnApps\Form\Contracts\Label as LabelInterface;
 use \MolnApps\Form\Contracts\Input as InputInterface;
 
+use \MolnApps\Form\HasAttributes;
+
 class Label implements LabelInterface
 {
+	use HasAttributes;
+
 	private $name;
 	private $label;
-
+	
 	private $top;
 
 	public function __construct($name, $label)
@@ -29,6 +33,10 @@ class Label implements LabelInterface
 			? $this->top->build($value) . ' ' 
 			: null;
 
-		return sprintf('<label for="%s">%s%s</label>', $this->name, $top, $this->label);
+		$baseAttr = [
+			'for' => $this->name
+		];
+
+		return sprintf('<label %s>%s%s</label>', $this->getAttributes($baseAttr), $top, $this->label);
 	}
 }

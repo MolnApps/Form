@@ -18,11 +18,12 @@ class FieldSetAttributesTest extends TestCase
 	{
 		$this->fieldSet->field('firstName', 'text', 'First name');
 		$this->fieldSet->attributes(['class' => 'firstName', 'maxlength' => 10], 'firstName');
+		$this->fieldSet->labelAttributes(['class' => 'Form__label']);
 
 		$result = $this->fieldSet->build();
 
 		$this->assertMarkup('
-			<label for="firstName">First name</label><br/>
+			<label for="firstName" class="Form__label">First name</label><br/>
 			<input type="text" name="firstName" id="firstName" class="firstName" maxlength="10" /><br/>
 		', $result);
 	}

@@ -26,6 +26,11 @@ class BaseField implements Field
 		return $this->input->setAttributes($attributes);
 	}
 
+	public function setLabelAttributes(array $attributes)
+	{
+		return $this->label->setAttributes($attributes);
+	}
+
 	public function build($value = null)
 	{
 		return $this->interpolate($this->getDictionary($value), $this->getMarkup());	
