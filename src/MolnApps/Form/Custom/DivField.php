@@ -6,6 +6,27 @@ use \MolnApps\Form\BaseField;
 
 class DivField extends BaseField
 {
+	protected function customizeLabel($label)
+	{
+		$label->addAttributes(['class' => 'Form__label']);
+	}
+
+	protected function customizeInput($input)
+	{
+		$override = [
+			'text' => 'input',
+			'multipleSelect' => 'select',
+		];
+
+		$type = $input->type();
+		
+		if (isset($override[$type])) {
+			$type = $override[$type];
+		}
+
+		$input->addAttributes(['class' => 'Form__' . $type]);
+	}
+
 	protected function getMarkup()
 	{
 		return '<div class="{classes}">' . parent::getMarkup() . '</div>';
@@ -21,8 +42,8 @@ class DivField extends BaseField
 	private function getFieldClasses()
 	{
 		$map = [
-			'textarea' => ['field', 'double'],
-			'default' => ['field'],
+			'textarea' => ['Form__field'],
+			'default' => ['Form__field'],
 		];
 
 		$type = $this->type();

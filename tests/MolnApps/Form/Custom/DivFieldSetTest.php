@@ -39,34 +39,34 @@ class DivFieldSetTest extends TestCase
 		]);
 
 		$this->assertMarkup('
-			<div class="fieldset">
-				<div class="field">
-					<label for="clientCode">Client code</label><br/>
-					<input type="text" name="clientCode" id="clientCode" value="foobar" /><br/>
+			<div class="Form__fieldset">
+				<div class="Form__field">
+					<label for="clientCode" class="Form__label">Client code</label><br/>
+					<input type="text" name="clientCode" id="clientCode" value="foobar" class="Form__input" /><br/>
 				</div>
-				<div class="field double">
-					<label for="supplier">Supplier</label><br/>
-					<textarea name="supplier" id="supplier" rows="9" cols="60">Lorem ipsum dolor sit amet</textarea><br/>
+				<div class="Form__field">
+					<label for="supplier" class="Form__label">Supplier</label><br/>
+					<textarea name="supplier" id="supplier" rows="9" cols="60" class="Form__textarea">Lorem ipsum dolor sit amet</textarea><br/>
 				</div>
-				<div class="field">
-					<label for="product">Product</label><br/>
-					<select name="product" id="product">
+				<div class="Form__field">
+					<label for="product" class="Form__label">Product</label><br/>
+					<select name="product" id="product" class="Form__select">
 						<option value="moln_report_basic">Moln Report Basic</option>
 						<option value="moln_report_plus" selected="selected">Moln Report Plus</option>
 					</select><br/>
 				</div>
-				<div class="field">
-					<label for="products">Product</label><br/>
-					<select name="products" id="products" multiple>
+				<div class="Form__field">
+					<label for="products" class="Form__label">Product</label><br/>
+					<select name="products" id="products" class="Form__select" multiple>
 						<option value="moln_report_basic_monthly" selected="selected">Moln Report Basic Monthly</option>
 						<option value="moln_report_plus_monthly">Moln Report Plus Monthly</option>
 						<option value="moln_report_basic_yearly">Moln Report Basic Yearly</option>
 						<option value="moln_report_plus_yearly" selected="selected">Moln Report Plus Yearly</option>
 					</select><br/>
 				</div>
-				<div class="field">
-					<label for="agree">
-						<input type="checkbox" name="agree" id="agree" value="1" /> 
+				<div class="Form__field">
+					<label for="agree" class="Form__label">
+						<input type="checkbox" name="agree" id="agree" value="1" class="Form__checkbox" /> 
 						Agreenment
 					</label><br/>
 				</div>

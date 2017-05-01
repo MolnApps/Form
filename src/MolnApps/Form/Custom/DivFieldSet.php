@@ -16,6 +16,6 @@ class DivFieldSet extends BaseFieldSet
 
 	public function build(array $values = [])
 	{
-		return '<div class="fieldset">'.parent::build($values).'</div>';
+		return '<div class="Form__fieldset">'.parent::build($values).'</div>';
 	}
 }

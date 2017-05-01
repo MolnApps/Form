@@ -8,7 +8,7 @@ use \MolnApps\Form\Contracts\Label;
 
 class BaseField implements Field
 {
-	protected $input;
+	private $input;
 	private $label;
 
 	public function __construct(Input $input, Label $label)
@@ -19,6 +19,9 @@ class BaseField implements Field
 		if ($this->shouldInlineLabel()) {
 			$this->label->top($this->input);
 		}
+
+		$this->customizeLabel($this->label);
+		$this->customizeInput($this->input);
 	}
 
 	public function setAttributes(array $attributes)
@@ -76,6 +79,16 @@ class BaseField implements Field
 		}
 
 		return '{label}<br/>{input}<br/>';
+	}
+
+	protected function customizeLabel($label)
+	{
+		// Override
+	}
+
+	protected function customizeInput($input)
+	{
+		// Override
 	}
 
 	private function shouldInlineLabel()
