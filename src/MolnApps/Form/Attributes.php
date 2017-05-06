@@ -8,7 +8,7 @@ class Attributes
 
 	public function __construct(array $attributes = [])
 	{
-		$this->attributes = $attributes;
+		$this->attributes = array_filter($attributes);
 	}
 
 	public static function make(array $attributes = [])

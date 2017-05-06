@@ -24,6 +24,10 @@ trait HasAttributes
 
 	private function mergeClassAttributes(array &$attributes)
 	{
+		if ( ! isset($this->attributes['class'])) {
+			$this->attributes['class'] = '';
+		}
+
 		if (isset($attributes['class'])) {
 			$this->attributes['class'].= ' ' . $attributes['class'];
 			$this->attributes['class'] = trim($this->attributes['class']);
