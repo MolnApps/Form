@@ -5,6 +5,36 @@ namespace MolnApps\Form\Input;
 class FactoryTest extends \PHPUnit_Framework_TestCase
 {
 	/** @test */
+	public function it_can_register_custom_input_with_a_closure()
+	{
+		$mock = $this->createMock(\MolnApps\Form\Contracts\Input::class);
+
+		$factory = new Factory;
+
+		$factory->registerInput('checkboxGroup', function() use ($mock) {
+			return $mock;
+		});
+
+		$input = $factory->createInput('Impresion', 'checkboxGroup', ['opt1' => 'Option 1', 'opt2' => 'Option 2']);
+
+		$this->assertSame($mock, $input);
+	}
+
+	/** @test */
+	public function it_can_register_custom_input_with_a_class_namespace()
+	{
+		$factory = new Factory;
+
+		$factory->registerInput('foobar', Text::class);
+
+		$input = $factory->createInput('firstName', 'foobar');
+
+		$this->assertInstanceOf(Text::class, $input);
+		$this->assertEquals('firstName', $input->identifier());
+		$this->assertEquals('foobar', $input->type());
+	}
+
+	/** @test */
 	public function it_returns_a_text_input()
 	{
 		$factory = new Factory;
